@@ -19,7 +19,7 @@ public class AuthController {
 	
 	//회원 가입
 	@PostMapping("/signup")
-	public String signup(@RequestParam String username, @RequestParam String password) {
+	public String signup(@RequestParam("username") String username, @RequestParam("password") String password) {
 		
 		User user = userService.signupUser(username, password);
 		return "회원가입 완료: " + user.getUsername();
@@ -29,6 +29,8 @@ public class AuthController {
 	//로그인 후에 로그인 인증 받은 user만 접근할 수 있는 request->로그인 체크용 요청
 	@GetMapping("/apicheck") 
 	public String apicheck() {
+		
+		System.out.println("로그인 확인됨!!");
 		return "로그인 성공 확인!";
 	}
 
